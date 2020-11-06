@@ -1,0 +1,46 @@
+.RoomForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 32px auto;
+}
+
+.RoomForm__group {
+  background: gray;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.RoomForm__label {
+  display: block;
+  background: gray;
+  padding: 0 0 8px;
+}
+
+.RoomForm__input {
+  border: none;
+  border-bottom: solid 2px #4c4c4f;
+  font-size: 1rem;
+  background-color: transparent;
+  color: #fff;
+  padding: .4em 0;
+  margin: 8px 0;
+  width: 100%;
+  max-width: 18em;
+  display: block;
+}
+
+.RoomForm__button {
+  font-size: 1rem;
+  padding: 4px 8px;
+  margin: 4px;
+}
+
+.RoomForm__button.is-active {
+  font-size: 1rem;
+  padding: 4px 8px;
+  margin: 4px;
+  background-color: black;
+  color: white;
+}
+

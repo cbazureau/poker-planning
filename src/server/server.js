@@ -3,6 +3,12 @@ const path = require('path');
 const http = require('http');
 const sio = require('socket.io');
 const compression = require('compression');
+const _remove = require('lodash/remove');
+const PROFILES = {
+  BOTH: 'BOTH',
+  SUBMITTER: 'SUBMITTER',
+  VOTER: 'VOTER',
+}
 
 const rooms = {};
 
@@ -20,37 +26,45 @@ if(process.env.NODE_ENV === 'production') {
 app.use(compression());
 // Switch off the default 'X-Powered-By: Express' header
 app.disable('x-powered-by');
+
+const cleanSocketFromRoom = (currentRoomId, id) => {
+  const users = _remove(rooms[currentRoomId].users, user => user.id === id);
+  rooms[currentRoomId].users = users;
+}
+
+// https://socket.io/docs/emit-cheatsheet/
 io.sockets.on('connection', (socket) => {
 	let currentRoomId = '';
-  // socket.on('message', (message) => socket.broadcast.to(room).emit('message', message));
 
   // Find
-	socket.on('find', roomId => {
+	socket.on('find', ({ roomId, user, profile }) => {
     console.log('[server] find', socket.id)
-		currentRoomId = roomId;
-    const sr = io.sockets.adapter.rooms[currentRoomId];
-    console.log({sr, currentRoomId})
-		if (sr === undefined) {
-			// no room with such name is found so create it
-      socket.join(currentRoomId);
+    currentRoomId = roomId;
+    socket.join(currentRoomId);
+    // no room with such name is found so create it
+		if (!rooms[currentRoomId]) {
+
       rooms[currentRoomId] = {
         date: new Date(),
-        admin: {
-          id: socket.id,
-        },
         users: [],
       }
-			socket.emit('update', {you: socket.id, data: rooms[currentRoomId]});
-		} else {
-      rooms[currentRoomId].users.push({
-        id: socket.id,
-      })
-			socket.emit('update', {you: socket.id, data: rooms[currentRoomId]});
-		}
+    }
+    // avoid duplicate
+    cleanSocketFromRoom(currentRoomId, socket.id);
+    // add user
+    rooms[currentRoomId].users.push({
+      id: socket.id,
+      user,
+      profile,
+    })
+    socket.emit('update', { you: socket.id });
+		io.in(currentRoomId).emit('update', { data: rooms[currentRoomId] });
   });
+
   // Leave
 	socket.on('leave', () => {
-
+    cleanSocketFromRoom(currentRoomId, socket.id);
+    socket.broadcast.to(currentRoomId).emit('update', { data: rooms[currentRoomId] });
   });
 
 });

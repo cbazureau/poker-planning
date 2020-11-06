@@ -5,31 +5,13 @@
   justify-content: flex-end;
   height: 100vh;
 }
-.Room__game {
-  flex: 1;
-  background-color: white;
-}
+.Room__info {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 1rem;
+  background: rgba(255,255,255, 0.5);
+  padding: 8px;
 
-.Room__videos {
-  background-color: gray;
-  align-items: center;
-  justify-content: flex-start;
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-}
-.Room__videobox {
-  position: relative;
-}
-.Room__video {
-  display: block;
-  height: auto;
-  width: 200px;
-  object-fit: cover;
-}
-.Room__video.is-local {
-  filter: grayscale(0.8);
-}
-.Room__videos:not(.established) .Room__video.is-remote {
-  display: none;
 }
