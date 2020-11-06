@@ -32,6 +32,7 @@ const RoomVoter = ({ roomData, currentSocketId, onVote }) => {
     <div className="RoomVoter">
       {cards.map((card) => (
         <VoteButton
+          key={card}
           onVote={onVote}
           storyPoint={card}
           activeStoryPoint={activeStoryPoint}

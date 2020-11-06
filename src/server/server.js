@@ -30,10 +30,19 @@ app.disable("x-powered-by");
 const cleanSocketFromRoom = (currentRoomId, id) => {
   const users = _remove(rooms[currentRoomId].users, (user) => user.id === id);
   rooms[currentRoomId].users = users;
+
+  if (rooms[currentRoomId].currentVote) {
+    const voters = _remove(
+      rooms[currentRoomId].currentVote.voters,
+      (voter) => voter.id === id
+    );
+    rooms[currentRoomId].currentVote.voters = voters;
+  }
 };
 
 // Send update of the room to everyone
 const sendGlobalUpdate = (currentRoomId) => {
+  console.log(rooms[currentRoomId].currentVote);
   io.in(currentRoomId).emit("update", { data: rooms[currentRoomId] });
 };
 

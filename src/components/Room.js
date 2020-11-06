@@ -6,7 +6,7 @@ import useBeforeUnload from "../utils/useBeforeUnload";
 import "./Room.css";
 import RoomLobby from "./RoomLobby";
 import RoomSubmitter from "./RoomSubmitter";
-import RoomMain from "./RoomMain";
+import RoomMessage from "./RoomMessage";
 import RoomVoter from "./RoomVoter";
 
 const STATUS = {
@@ -82,7 +82,7 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
       )}
       {socketStatus === STATUS.IN_ROOM && (
         <div className="Room__zones">
-          <RoomMain currentSocketId={currentSocketId} roomData={roomData} />
+          <RoomMessage currentSocketId={currentSocketId} roomData={roomData} />
           <RoomSubmitter
             currentSocketId={currentSocketId}
             roomData={roomData}
@@ -97,7 +97,7 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
         </div>
       )}
       <div className="Room__info">
-        Room {roomId} {currentSocketId} {socketStatus}
+        Room {roomId} ({socketStatus})
       </div>
     </div>
   );
