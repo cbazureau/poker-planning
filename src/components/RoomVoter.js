@@ -1,16 +1,16 @@
 import React from "react";
 import _get from "lodash/get";
-import "./RoomSubmitter.css";
+import "./RoomVoter.css";
 import PROFILES from "../utils/profiles";
 
-const RoomSubmitter = ({ roomData, currentSocketId }) => {
+const RoomVoter = ({ roomData, currentSocketId }) => {
   const user = _get(roomData, 'users', []).find(user => user.id === currentSocketId);
   if(!user || user.profile === PROFILES.VOTER) return null;
   return (
-    <div className="RoomSubmitter">
-      RoomSubmitter
+    <div className="RoomVoter">
+      RoomVoter
     </div>
   );
 };
 
-export default RoomSubmitter;
+export default RoomVoter;
