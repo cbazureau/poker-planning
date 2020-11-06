@@ -7,10 +7,10 @@ const DEFAULT_ROOM = String(new Date() - new Date().setHours(0, 0, 0, 0));
 const Home = () => {
 	return (
 		<div className="Home">
-			<div>
-				<h1>Poker Planning</h1>
-				<Link className="primary-button" to={'/r/' + DEFAULT_ROOM}>
-          Create Room
+			<div className="Home__card">
+				<h1 className="Home__title">Grooming</h1>
+				<Link className="Home__start" to={'/r/' + DEFAULT_ROOM}>
+					Let's groom !
 				</Link>
 			</div>
 		</div>
