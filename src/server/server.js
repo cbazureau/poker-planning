@@ -87,4 +87,19 @@ io.sockets.on("connection", (socket) => {
     rooms[currentRoomId].currentVote.status = "REVEAL";
     sendGlobalUpdate(currentRoomId);
   });
+
+  // Vote
+  socket.on("vote", ({ storyPoint }) => {
+    const voters = _remove(
+      rooms[currentRoomId].voters,
+      (voter) => voter.id === socket.id
+    );
+    voters.push({
+      id: socket.id,
+      vote: storyPoint,
+    });
+
+    rooms[currentRoomId].currentVote.voters = voters;
+    sendGlobalUpdate(currentRoomId);
+  });
 });

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import _get from "lodash/get";
 import "./RoomSubmitter.css";
 import PROFILES from "../utils/profiles";
+import VOTES from "../utils/votes";
 
 const RoomSubmitter = ({
   roomData,
@@ -16,10 +17,14 @@ const RoomSubmitter = ({
   const currentVote = _get(roomData, "currentVote");
 
   // Not authorized
-  if (!user || user.profile === PROFILES.VOTER) return null;
+  if (
+    !user ||
+    (user.profile !== PROFILES.SUBMITTER && user.profile !== PROFILES.BOTH)
+  )
+    return null;
 
   // Currently not voting or is already revealed
-  if (!currentVote || currentVote.status === "REVEAL")
+  if (!currentVote || currentVote.status === VOTES.REVEAL)
     return (
       <div className="RoomSubmitter">
         <div className="RoomLobby__group">

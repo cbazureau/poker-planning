@@ -36,6 +36,10 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
     setCurrentProfile(profile);
   };
 
+  const onVote = ({ storyPoint }) => {
+    socket.current.emit("vote", { storyPoint });
+  };
+
   const onProposeVote = ({ voteId }) => {
     socket.current.emit("propose-vote", { voteId });
   };
@@ -85,7 +89,11 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
             onProposeVote={onProposeVote}
             onReveal={onReveal}
           />
-          <RoomVoter currentSocketId={currentSocketId} roomData={roomData} />
+          <RoomVoter
+            currentSocketId={currentSocketId}
+            roomData={roomData}
+            onVote={onVote}
+          />
         </div>
       )}
       <div className="Room__info">
