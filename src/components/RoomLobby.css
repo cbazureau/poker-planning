@@ -1,23 +1,23 @@
-.RoomForm {
+.RoomLobby {
   display: flex;
   flex-direction: column;
   max-width: 600px;
   margin: 32px auto;
 }
 
-.RoomForm__group {
+.RoomLobby__group {
   background: gray;
   padding: 8px;
   margin-bottom: 8px;
 }
 
-.RoomForm__label {
+.RoomLobby__label {
   display: block;
   background: gray;
   padding: 0 0 8px;
 }
 
-.RoomForm__input {
+.RoomLobby__input {
   border: none;
   border-bottom: solid 2px #4c4c4f;
   font-size: 1rem;
@@ -30,13 +30,13 @@
   display: block;
 }
 
-.RoomForm__button {
+.RoomLobby__button {
   font-size: 1rem;
   padding: 4px 8px;
   margin: 4px;
 }
 
-.RoomForm__button.is-active {
+.RoomLobby__button.is-active {
   font-size: 1rem;
   padding: 4px 8px;
   margin: 4px;

@@ -1,32 +1,32 @@
 import React, { useState } from "react";
 import classnames from "classnames";
-import "./RoomForm.css";
+import "./RoomLobby.css";
 import PROFILES from "../utils/profiles";
 
-const RoomForm = ({ onSubmit }) => {
+const RoomLobby = ({ onSubmit }) => {
   const [user, setUser] = useState(undefined);
   const [profile, setProfile] = useState(undefined);
   return (
-    <div className="RoomForm">
-      <div className="RoomForm__group">
-        <label className="RoomForm__label" htmlFor="user">
+    <div className="RoomLobby">
+      <div className="RoomLobby__group">
+        <label className="RoomLobby__label" htmlFor="user">
           UserName
         </label>
         <input
-          className="RoomForm__input"
+          className="RoomLobby__input"
           type="text"
           id="user"
           name="user"
           onChange={(event) => setUser(event.target.value)}
         />
       </div>
-      <div className="RoomForm__group">
-        <label className="RoomForm__label" htmlFor="profile">
+      <div className="RoomLobby__group">
+        <label className="RoomLobby__label" htmlFor="profile">
           Profile
         </label>
-        <div className="RoomForm__buttons">
+        <div className="RoomLobby__buttons">
           <button
-            className={classnames("RoomForm__button", {
+            className={classnames("RoomLobby__button", {
               "is-active": PROFILES.SUBMITTER === profile,
             })}
             type="button"
@@ -35,7 +35,7 @@ const RoomForm = ({ onSubmit }) => {
             Submitter only
           </button>
           <button
-            className={classnames("RoomForm__button", {
+            className={classnames("RoomLobby__button", {
               "is-active": PROFILES.VOTER === profile,
             })}
             type="button"
@@ -44,7 +44,7 @@ const RoomForm = ({ onSubmit }) => {
             Voter only
           </button>
           <button
-            className={classnames("RoomForm__button", {
+            className={classnames("RoomLobby__button", {
               "is-active": PROFILES.BOTH === profile,
             })}
             type="button"
@@ -55,7 +55,7 @@ const RoomForm = ({ onSubmit }) => {
         </div>
       </div>
       <button
-        className="RoomForm__button RoomForm__submit"
+        className="RoomLobby__button RoomLobby__submit"
         type="submit"
         onClick={() => onSubmit({ user, profile })}
       >
@@ -64,4 +64,4 @@ const RoomForm = ({ onSubmit }) => {
     </div>
   );
 };
-export default RoomForm;
+export default RoomLobby;

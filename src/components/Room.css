@@ -1,8 +1,8 @@
 
 .Room {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: center;
   height: 100vh;
 }
 .Room__info {
@@ -14,4 +14,9 @@
   background: rgba(255,255,255, 0.5);
   padding: 8px;
 
+}
+
+.Room__zones {
+  display: flex;
+  flex-direction: column;
 }
