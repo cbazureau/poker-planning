@@ -36,6 +36,14 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
     setCurrentProfile(profile);
   };
 
+  const onProposeVote = ({ voteId }) => {
+    socket.current.emit("propose-vote", { voteId });
+  };
+
+  const onReveal = () => {
+    socket.current.emit("reveal-vote");
+  };
+
   socket.current.on("connect", () => {
     setSocketStatus(STATUS.IN_LOBBY);
   });
@@ -65,11 +73,18 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
 
   return (
     <div className="Room">
-      {socketStatus === STATUS.IN_LOBBY && <RoomLobby onSubmit={onFormSubmit} />}
+      {socketStatus === STATUS.IN_LOBBY && (
+        <RoomLobby onSubmit={onFormSubmit} />
+      )}
       {socketStatus === STATUS.IN_ROOM && (
         <div className="Room__zones">
           <RoomMain currentSocketId={currentSocketId} roomData={roomData} />
-          <RoomSubmitter currentSocketId={currentSocketId} roomData={roomData} />
+          <RoomSubmitter
+            currentSocketId={currentSocketId}
+            roomData={roomData}
+            onProposeVote={onProposeVote}
+            onReveal={onReveal}
+          />
           <RoomVoter currentSocketId={currentSocketId} roomData={roomData} />
         </div>
       )}
