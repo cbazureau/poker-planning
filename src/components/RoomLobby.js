@@ -29,34 +29,34 @@ const RoomLobby = ({ onSubmit }) => {
 					<label className="RoomLobby__label" htmlFor="profile">
 						Role
 					</label>
-					<div className="RoomLobby__buttons">
-						<button
-							className={classnames('RoomLobby__button', {
-								'is-active': PROFILES.SUBMITTER === profile
-							})}
-							type="button"
-							onClick={() => setProfile(PROFILES.SUBMITTER)}
-						>
-							Submitter only
-						</button>
-						<button
-							className={classnames('RoomLobby__button', {
-								'is-active': PROFILES.VOTER === profile
-							})}
-							type="button"
-							onClick={() => setProfile(PROFILES.VOTER)}
-						>
-							Voter only
-						</button>
-						<button
-							className={classnames('RoomLobby__button', {
-								'is-active': PROFILES.BOTH === profile
-							})}
-							type="button"
-							onClick={() => setProfile(PROFILES.BOTH)}
-						>
-							Both
-						</button>
+					<div className="RoomLobby__radios">
+						<label className="RoomLobby__radioLabel">
+							<input
+								className="RoomLobby__radio"
+								type="radio"
+								checked={PROFILES.SUBMITTER === profile}
+								onClick={() => setProfile(PROFILES.SUBMITTER)}
+							/>
+							<span>Product Owner - I'm here to submit stories</span>
+						</label>
+						<label className="RoomLobby__radioLabel">
+							<input
+								className="RoomLobby__radio"
+								type="radio"
+								checked={PROFILES.VOTER === profile}
+								onClick={() => setProfile(PROFILES.VOTER)}
+							/>
+							<span>Developper - I'm here to estimate stories</span>
+						</label>
+						<label className="RoomLobby__radioLabel">
+							<input
+								className="RoomLobby__radio"
+								type="radio"
+								checked={PROFILES.BOTH === profile}
+								onClick={() => setProfile(PROFILES.BOTH)}
+							/>
+							<span>I want to do both !</span>
+						</label>
 					</div>
 				</div>
 				<button className="CardBox__button" type="submit" onClick={() => onSubmit({ user, profile })}>

@@ -12,21 +12,12 @@
   padding: 8px;
   width: calc(100% - 32px);
   margin: 0 auto;
-  margin-bottom: 8px;
 }
 
 .RoomLobby__label {
   display: block;
   padding: 0 0 8px;
   font-size: 2rem;
-}
-
-.RoomLobby__intro {
-  width: calc(100% - 32px);
-  text-align: center;
-  font-size: 1.6rem;
-  margin: 0 auto;
-  margin-bottom: 32px;
 }
 
 .RoomLobby__input {
@@ -41,10 +32,30 @@
   padding: 8px 2px;
 }
 
-.RoomLobby__button {
-  font-size: 1rem;
-  padding: 4px 8px;
-  margin: 4px;
+.RoomLobby__intro {
+  width: calc(100% - 32px);
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 0 auto;
+  margin-bottom: 16px;
+}
+
+.RoomLobby__radios {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.RoomLobby__radio {
+  /*font-size: 2rem;*/
+  margin: 4px 8px;
+}
+.RoomLobby__radioLabel {
+  font-size: 1.3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .RoomLobby__button.is-active {
