@@ -1,33 +1,44 @@
+@import './CardBox.css';
+
 .RoomLobby {
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  max-width: 600px;
-  margin: 32px auto;
+  align-items: center;
+  height: 100vh;
 }
 
 .RoomLobby__group {
-  background: gray;
   padding: 8px;
+  width: calc(100% - 32px);
+  margin: 0 auto;
   margin-bottom: 8px;
 }
 
 .RoomLobby__label {
   display: block;
-  background: gray;
   padding: 0 0 8px;
+  font-size: 2rem;
+}
+
+.RoomLobby__intro {
+  width: calc(100% - 32px);
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 0 auto;
+  margin-bottom: 32px;
 }
 
 .RoomLobby__input {
   border: none;
-  border-bottom: solid 2px #4c4c4f;
-  font-size: 1rem;
+  border-bottom: solid 1px var(--gray);
+  font-size: 2rem;
   background-color: transparent;
-  color: #fff;
-  padding: .4em 0;
-  margin: 8px 0;
+  color: var(--gray);
   width: 100%;
-  max-width: 18em;
+  max-width: 200px;
   display: block;
+  padding: 8px 2px;
 }
 
 .RoomLobby__button {
