@@ -21,6 +21,7 @@ const RoomLobby = ({ onSubmit }) => {
 						type="text"
 						id="user"
 						name="user"
+						placeholder="Anne Onymous"
 						onChange={(event) => setUser(event.target.value)}
 					/>
 				</div>

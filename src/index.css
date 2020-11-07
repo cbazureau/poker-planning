@@ -46,3 +46,6 @@ input:focus,
 button:focus {
   outline: 0;
 }
+input::placeholder {
+  color: #DDD;
+}
