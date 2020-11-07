@@ -44,7 +44,7 @@ const Home = () => {
 					</svg>
 				</div>
 				<Link className="CardBox__button" to={'/r/' + DEFAULT_ROOM}>
-					Let's groom !
+					Create a room !
 				</Link>
 			</div>
 		</div>

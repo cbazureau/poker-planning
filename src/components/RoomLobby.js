@@ -27,7 +27,7 @@ const RoomLobby = ({ onSubmit }) => {
 				</div>
 				<div className="RoomLobby__group">
 					<label className="RoomLobby__label" htmlFor="profile">
-						Profile
+						Role
 					</label>
 					<div className="RoomLobby__buttons">
 						<button
@@ -60,7 +60,7 @@ const RoomLobby = ({ onSubmit }) => {
 					</div>
 				</div>
 				<button className="CardBox__button" type="submit" onClick={() => onSubmit({ user, profile })}>
-					Submit
+					Let's groom !
 				</button>
 			</div>
 		</div>
