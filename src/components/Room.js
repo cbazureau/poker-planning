@@ -87,12 +87,11 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
 			{socketStatus === STATUS.IN_LOBBY && <RoomLobby onSubmit={onFormSubmit} />}
 			{socketStatus === STATUS.IN_ROOM && (
 				<div className="Room__zones">
-					<RoomMessage currentSocketId={currentSocketId} roomData={roomData} />
+					<RoomMessage currentSocketId={currentSocketId} roomData={roomData} onReveal={onReveal} />
 					<RoomSubmitter
 						currentSocketId={currentSocketId}
 						roomData={roomData}
 						onProposeVote={onProposeVote}
-						onReveal={onReveal}
 					/>
 					<RoomVoter currentSocketId={currentSocketId} roomData={roomData} onVote={onVote} />
 				</div>

@@ -24,9 +24,10 @@ const Votes = ({ votes, withStoryPoint }) => (
 	</Fragment>
 );
 
-const RoomMessage = ({ roomData, currentSocketId }) => {
+const RoomMessage = ({ roomData, currentSocketId, onReveal }) => {
 	const currentVote = _get(roomData, 'currentVote', {});
 	const currentVoteStatus = currentVote.status || VOTES.NOT_STARTED;
+	const user = _get(roomData, 'users', []).find((user) => user.id === currentSocketId);
 	const votes = _get(roomData, 'users', [])
 		.filter((user) => user.profile === PROFILES.VOTER || user.profile === PROFILES.BOTH)
 		.map((user) => {
@@ -51,7 +52,13 @@ const RoomMessage = ({ roomData, currentSocketId }) => {
 				<div className="CardBox">
 					<div className="CardBox__intro">Voting for {currentVote.id} ...</div>
 					<Votes votes={votes} />
-				</div>
+					{!!user &&
+					(user.profile === PROFILES.SUBMITTER || user.profile === PROFILES.BOTH) && (
+						<button className="CardBox__button" type="submit" onClick={() => onReveal()}>
+							Reveal
+						</button>
+					)}
+				</div>}
 			</div>
 		);
 	}

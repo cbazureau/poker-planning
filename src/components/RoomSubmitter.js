@@ -38,16 +38,8 @@ const RoomSubmitter = ({ roomData, currentSocketId, onReveal, onProposeVote }) =
 			</div>
 		);
 
-	// Voting in progress
-	return (
-		<div className="RoomSubmitter">
-			<div className="CardBox">
-				<button className="CardBox__button" type="submit" onClick={() => onReveal()}>
-					Reveal
-				</button>
-			</div>
-		</div>
-	);
+	// Voting in progress (Reveal is on RoomMessage)
+	return null;
 };
 
 export default RoomSubmitter;
