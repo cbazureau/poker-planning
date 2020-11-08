@@ -1,0 +1,25 @@
+.VoteButton {
+
+  height: 60px;
+  width: 40px;
+  margin: 0 4px;
+  background-color: var(--white);
+  color: var(--gray);
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+  font-size: 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.VoteButton:hover {
+  border: 1px solid var(--main);
+  color: var(--main);
+}
+
+.VoteButton.is-active {
+  background-color: var(--main);
+  color: var(--white);
+  border: 1px solid var(--main);
+}

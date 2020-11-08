@@ -48,7 +48,7 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
 		setSocketStatus(STATUS.IN_LOBBY);
 	});
 	socket.current.on('update', ({ you, data }) => {
-		console.log('[update]', you, data);
+		// console.log('[update]', you, data);
 		updateRoom({ you, data });
 		if (socketStatus === STATUS.IN_LOBBY) {
 			setSocketStatus(STATUS.IN_ROOM);

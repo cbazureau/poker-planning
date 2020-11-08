@@ -37,7 +37,7 @@ const cleanSocketFromRoom = (currentRoomId, id) => {
 
 // Send update of the room to everyone
 const sendGlobalUpdate = (currentRoomId) => {
-	console.log(rooms[currentRoomId].currentVote);
+	// console.log(rooms[currentRoomId].currentVote);
 	io.in(currentRoomId).emit('update', { data: rooms[currentRoomId] });
 };
 
@@ -46,12 +46,12 @@ io.sockets.on('connection', (socket) => {
 
 	// Find
 	socket.on('find', ({ roomId, user, profile }) => {
-		console.log('[server] find', socket.id);
+		// console.log('[server] find', socket.id);
 		currentRoomId = roomId;
 		socket.join(currentRoomId);
 		// no room with such name is found so create it
 		if (!rooms[currentRoomId]) {
-			console.log('[server] clean room');
+			// console.log('[server] clean room');
 			rooms[currentRoomId] = {
 				date: new Date(),
 				users: []
@@ -71,14 +71,14 @@ io.sockets.on('connection', (socket) => {
 
 	// Leave
 	socket.on('leave', () => {
-		console.log('[server] leave', socket.id);
+		// console.log('[server] leave', socket.id);
 		cleanSocketFromRoom(currentRoomId, socket.id);
 		socket.broadcast.to(currentRoomId).emit('update', { data: rooms[currentRoomId] });
 	});
 
 	// Propose Vote
 	socket.on('propose-vote', ({ voteId }) => {
-		console.log('[server] propose-vote', socket.id);
+		// console.log('[server] propose-vote', socket.id);
 		rooms[currentRoomId].currentVote = {
 			id: voteId,
 			userId: socket.id,
@@ -90,14 +90,14 @@ io.sockets.on('connection', (socket) => {
 
 	// Reveal Vote
 	socket.on('reveal-vote', () => {
-		console.log('[server] reveal-vote', socket.id);
+		// console.log('[server] reveal-vote', socket.id);
 		rooms[currentRoomId].currentVote.status = 'REVEAL';
 		sendGlobalUpdate(currentRoomId);
 	});
 
 	// Vote
 	socket.on('vote', ({ storyPoint }) => {
-		console.log('[server] vote', socket.id);
+		// console.log('[server] vote', socket.id);
 		_remove(rooms[currentRoomId].currentVote.voters, (voter) => voter.id === socket.id);
 		rooms[currentRoomId].currentVote.voters.push({
 			id: socket.id,
