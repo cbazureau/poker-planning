@@ -34,7 +34,7 @@ const RoomLobby = ({ onSubmit }) => {
 								className="RoomLobby__radio"
 								type="radio"
 								checked={PROFILES.SUBMITTER === profile}
-								onClick={() => setProfile(PROFILES.SUBMITTER)}
+								onChange={() => setProfile(PROFILES.SUBMITTER)}
 							/>
 							<span>Product Owner - I'm here to submit stories</span>
 						</label>
@@ -43,7 +43,7 @@ const RoomLobby = ({ onSubmit }) => {
 								className="RoomLobby__radio"
 								type="radio"
 								checked={PROFILES.VOTER === profile}
-								onClick={() => setProfile(PROFILES.VOTER)}
+								onChange={() => setProfile(PROFILES.VOTER)}
 							/>
 							<span>Developper - I'm here to estimate stories</span>
 						</label>
@@ -52,7 +52,7 @@ const RoomLobby = ({ onSubmit }) => {
 								className="RoomLobby__radio"
 								type="radio"
 								checked={PROFILES.BOTH === profile}
-								onClick={() => setProfile(PROFILES.BOTH)}
+								onChange={() => setProfile(PROFILES.BOTH)}
 							/>
 							<span>I want to do both !</span>
 						</label>

@@ -1,0 +1,14 @@
+@import './CardBox.css';
+
+.RoomVoter {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.RoomVoter_cards {
+  display: flex;
+  flex-direction: row;
+}
