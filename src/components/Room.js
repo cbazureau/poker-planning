@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
+import QRCode from 'qrcode.react';
 import store from '../store';
 import io from 'socket.io-client';
 import useBeforeUnload from '../utils/useBeforeUnload';
@@ -21,6 +22,7 @@ const STATUS = {
  */
 const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
 	const [ socketStatus, setSocketStatus ] = useState(STATUS.DISCONNECTED);
+	const [ isQrcodeVisible, setQrcodeVisible ] = useState(false);
 	const [ currentUser, setCurrentUser ] = useState(undefined);
 	const [ currentProfile, setCurrentProfile ] = useState(undefined);
 	const socketDomain = window.location.host === 'localhost:3000' ? 'localhost:5000' : window.location.host;
@@ -77,6 +79,11 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
 
 	return (
 		<div className="Room">
+			{isQrcodeVisible && (
+				<div className="Room__QRCodeBox" onClick={() => setQrcodeVisible(false)}>
+					<QRCode className="Room__QRCode" size="200" value={window.location.href} />
+				</div>
+			)}
 			{socketStatus === STATUS.IN_LOBBY && <RoomLobby onSubmit={onFormSubmit} />}
 			{socketStatus === STATUS.IN_ROOM && (
 				<div className="Room__zones">
@@ -91,7 +98,19 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
 				</div>
 			)}
 			<div className="Room__info">
-				Room {roomId} ({socketStatus})
+				<span>
+					Room {roomId} ({socketStatus}) -{' '}
+				</span>
+				{isQrcodeVisible && (
+					<button className="Room__infobutton" onClick={() => setQrcodeVisible(false)}>
+						hide QrCode
+					</button>
+				)}
+				{!isQrcodeVisible && (
+					<button className="Room__infobutton" onClick={() => setQrcodeVisible(true)}>
+						view QrCode
+					</button>
+				)}
 			</div>
 		</div>
 	);

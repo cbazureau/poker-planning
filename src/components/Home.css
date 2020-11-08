@@ -1,6 +1,7 @@
 @import './CardBox.css';
 
 .Home {
+  position: relative;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -15,8 +16,6 @@
   text-transform: uppercase;
   font-style: normal;
 }
-
-
 
 .Home__logo {
   width: 150px;

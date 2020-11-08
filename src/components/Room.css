@@ -10,13 +10,39 @@
   left: 0;
   right: 0;
   bottom: 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  color: var(--gray);
   background: rgba(255,255,255, 0.5);
   padding: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.Room__QRCodeBox {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  max-height: 600px;
+}
+.Room__QRCode {
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 64px;
 }
 
 .Room__zones {
   display: flex;
   flex-direction: column;
+}
+
+.Room__infobutton {
+  background-color: transparent;
+  border: 1px solid var(--gray);
+  border-radius: 2px;
 }
