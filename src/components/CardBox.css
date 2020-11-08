@@ -1,6 +1,7 @@
 .CardBox {
   padding: 24px;
   background: var(--white);
+  margin: 16px 0;
   width: 75%;
   max-width: 400px;
   height: auto;

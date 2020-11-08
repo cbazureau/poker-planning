@@ -9,7 +9,7 @@ const Votes = ({ votes, withStoryPoint }) => (
 		<div className="RoomMessage__votes has-voted">
 			<div className="RoomMessage__voteTitle">{withStoryPoint ? 'Have voted' : 'Have already voted'}</div>
 			{votes.filter((vote) => vote.storyPoint).map(({ user, storyPoint }) => (
-				<div className="RoomMessage__vote">
+				<div className="RoomMessage__vote" key={user}>
 					<span className="RoomMessage__user">{user}</span>
 					{withStoryPoint && <span className="RoomMessage__storypoint">{storyPoint}</span>}
 				</div>
@@ -17,9 +17,11 @@ const Votes = ({ votes, withStoryPoint }) => (
 		</div>
 		<div className="RoomMessage__votes">
 			<div className="RoomMessage__voteTitle">{withStoryPoint ? "Didn't vote" : 'Still needs to vote'}</div>
-			{votes
-				.filter((vote) => !vote.storyPoint)
-				.map(({ user }) => <span className="RoomMessage__user">{user}</span>)}
+			{votes.filter((vote) => !vote.storyPoint).map(({ user }) => (
+				<span key={user} className="RoomMessage__user">
+					{user}
+				</span>
+			))}
 		</div>
 	</Fragment>
 );
