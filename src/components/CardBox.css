@@ -1,9 +1,8 @@
 .CardBox {
-  padding: 32px;
-  background: white;
-  width: calc(100% - 32px);
+  padding: 24px;
+  background: var(--white);
+  width: 75%;
   max-width: 400px;
-  max-height: calc(100% - 64px);
   height: auto;
   display: flex;
   justify-content: space-between;
@@ -12,6 +11,12 @@
   border-radius: 4px;
   overflow-y: auto;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+@media (min-height: 800px) {
+  .CardBox {
+    padding: 32px;
+  }
 }
 
 .CardBox__group {

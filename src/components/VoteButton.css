@@ -2,7 +2,7 @@
 
   height: 60px;
   width: 40px;
-  margin: 0 4px;
+  margin: 0 4px 8px;
   background-color: var(--white);
   color: var(--gray);
   border: 1px solid var(--gray);
