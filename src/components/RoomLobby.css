@@ -8,38 +8,6 @@
   height: 100vh;
 }
 
-.RoomLobby__group {
-  padding: 8px;
-  width: calc(100% - 32px);
-  margin: 0 auto;
-}
-
-.RoomLobby__label {
-  display: block;
-  padding: 0 0 8px;
-  font-size: 2rem;
-}
-
-.RoomLobby__input {
-  border: none;
-  border-bottom: solid 1px var(--gray);
-  font-size: 2rem;
-  background-color: transparent;
-  color: var(--gray);
-  width: 100%;
-  max-width: 200px;
-  display: block;
-  padding: 8px 2px;
-}
-
-.RoomLobby__intro {
-  width: calc(100% - 32px);
-  text-align: center;
-  font-size: 1.6rem;
-  margin: 0 auto;
-  margin-bottom: 16px;
-}
-
 .RoomLobby__radios {
   display: flex;
   justify-content: center;
@@ -56,13 +24,5 @@
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 8px;
-}
-
-.RoomLobby__button.is-active {
-  font-size: 1rem;
-  padding: 4px 8px;
-  margin: 4px;
-  background-color: black;
-  color: white;
 }
 

@@ -2,10 +2,9 @@
   padding: 32px;
   background: white;
   width: calc(100% - 32px);
-  box-sizing: border-box;
   max-width: 400px;
-  max-height: 400px;
-  height: 75vh;
+  max-height: calc(100% - 64px);
+  height: auto;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -13,6 +12,41 @@
   border-radius: 4px;
   overflow-y: auto;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+
+.CardBox__group {
+  padding: 8px;
+  width: calc(100% - 32px);
+  margin: 0 auto;
+  margin-bottom: 16px;
+}
+
+
+.CardBox__label {
+  display: block;
+  padding: 0 0 8px;
+  font-size: 2rem;
+}
+
+.CardBox__input {
+  border: none;
+  border-bottom: solid 1px var(--gray);
+  font-size: 2rem;
+  background-color: transparent;
+  color: var(--gray);
+  width: 100%;
+  max-width: 200px;
+  display: block;
+  padding: 8px 2px;
+}
+
+.CardBox__intro {
+  width: calc(100% - 32px);
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 0 auto;
+  margin-bottom: 32px;
 }
 
 .CardBox__button {

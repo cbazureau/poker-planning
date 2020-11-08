@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import classnames from 'classnames';
 import './RoomLobby.css';
 import PROFILES from '../utils/profiles';
 
@@ -9,15 +8,15 @@ const RoomLobby = ({ onSubmit }) => {
 	return (
 		<div className="RoomLobby">
 			<div className="CardBox">
-				<div className="RoomLobby__group">
-					<div className="RoomLobby__intro">
+				<div className="CardBox__group">
+					<div className="CardBox__intro">
 						Choose a username. Choose wisely, as it can't be changed later.
 					</div>
-					<label className="RoomLobby__label" htmlFor="user">
+					<label className="CardBox__label" htmlFor="user">
 						Username
 					</label>
 					<input
-						className="RoomLobby__input"
+						className="CardBox__input"
 						type="text"
 						id="user"
 						name="user"
@@ -25,8 +24,8 @@ const RoomLobby = ({ onSubmit }) => {
 						onChange={(event) => setUser(event.target.value)}
 					/>
 				</div>
-				<div className="RoomLobby__group">
-					<label className="RoomLobby__label" htmlFor="profile">
+				<div className="CardBox__group">
+					<label className="CardBox__label" htmlFor="profile">
 						Role
 					</label>
 					<div className="RoomLobby__radios">
