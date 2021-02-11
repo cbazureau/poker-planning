@@ -26,6 +26,7 @@ app.disable('x-powered-by');
 
 // Clear current socket from the room
 const cleanSocketFromRoom = (currentRoomId, id) => {
+  if(!rooms[currentRoomId] || !rooms[currentRoomId].users) return;
 	_remove(rooms[currentRoomId].users, (user) => user.id === id);
 	if (rooms[currentRoomId].users.length === 0) {
 		delete rooms[currentRoomId].currentVote;
@@ -42,7 +43,13 @@ const sendGlobalUpdate = (currentRoomId) => {
 };
 
 io.sockets.on('connection', (socket) => {
-	let currentRoomId = '';
+  let currentRoomId = '';
+  
+  // Disconnect
+  socket.on('disconnect', () => {
+    cleanSocketFromRoom(currentRoomId, socket.id);
+		socket.broadcast.to(currentRoomId).emit('update', { data: rooms[currentRoomId] });
+  });
 
 	// Find
 	socket.on('find', ({ roomId, user, profile }) => {
