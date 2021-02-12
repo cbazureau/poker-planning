@@ -11,7 +11,7 @@
   align-items: center;
   border-radius: 4px;
   overflow-y: auto;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 @media (min-height: 800px) {
@@ -26,7 +26,6 @@
   margin: 0 auto;
   margin-bottom: 16px;
 }
-
 
 .CardBox__label {
   display: block;
@@ -44,6 +43,7 @@
   max-width: 200px;
   display: block;
   padding: 8px 2px;
+  margin: 8px 0;
 }
 
 .CardBox__intro {
@@ -57,16 +57,52 @@
 .CardBox__button {
   font-size: 2.3rem;
   text-decoration: none;
-  border:1px solid var(--gray);
   background: none;
-  color: var(--gray);
+  border: 1px solid var(--main);
+  color: var(--main);
   padding: 8px 32px;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  margin: 8px 0;
 }
 
 .CardBox__button:hover {
-  border: 1px solid var(--main);
-  color: var(--main);
+  background-color: var(--main);
+  color: var(--white);
+}
+
+.CardBox__separator {
+  margin: 8px 0px;
+  position: relative;
+  height: 50px;
+}
+.CardBox__separator span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  font-size: 2.3rem;
+  background: var(--white);
+  padding: 0px 12px;
+  z-index: 2;
+  display: block;
+  font-weight: bold;
+}
+.CardBox__separator::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  height: 2px;
+  width: 270px;
+  background: var(--gray);
+  z-index: 1;
+}
+
+@media (min-width: 600px) {
+  .CardBox__separator::after {
+    width: 350px;
+  }
 }

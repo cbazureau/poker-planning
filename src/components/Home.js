@@ -1,19 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Home.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./Home.css";
 
-const DEFAULT_ROOM = String(new Date() - new Date().setHours(0, 0, 0, 0));
+const genRanHex = (size) =>
+  [...Array(size)]
+    .map(() => Math.floor(Math.random() * 16).toString(16))
+    .join("")
+    .toUpperCase();
+
+const DEFAULT_ROOM = genRanHex(4);
 
 const Home = () => {
-	return (
-		<div className="Home">
-			<div className="CardBox">
-				<h1 className="Home__title">Grooming</h1>
-				<div className="Home__logozone">
-					<svg className="Home__logo" version="1.1" x="0px" y="0px" viewBox="0 0 463.644 463.644">
-						<path
-							id="XMLID_1_"
-							d="M463.164,146.031l-77.369,288.746c-1.677,6.26-7.362,10.4-13.556,10.401c-1.198,0-2.414-0.155-3.625-0.479
+  const [targetRoom, setTargetRoom] = useState("");
+  return (
+    <div className="Home">
+      <div className="CardBox">
+        <h1 className="Home__title">Grooming</h1>
+        <div className="Home__logozone">
+          <svg
+            className="Home__logo"
+            version="1.1"
+            x="0px"
+            y="0px"
+            viewBox="0 0 463.644 463.644"
+          >
+            <path
+              id="XMLID_1_"
+              d="M463.164,146.031l-77.369,288.746c-1.677,6.26-7.362,10.4-13.556,10.401c-1.198,0-2.414-0.155-3.625-0.479
 	l-189.261-50.712c-7.472-2.003-11.922-9.711-9.919-17.183l2.041-7.616c1.287-4.801,6.222-7.647,11.023-6.363
 	c4.801,1.287,7.65,6.222,6.363,11.023l-1.013,3.78l181.587,48.656l75.314-281.076l-77.031-20.64
 	c-4.801-1.287-7.651-6.222-6.364-11.023s6.225-7.648,11.022-6.364l80.869,21.668C460.718,130.853,465.167,138.56,463.164,146.031z
@@ -40,14 +53,31 @@ const Home = () => {
 	c1.078,4.021,4.714,6.673,8.688,6.673c0.771,0,1.555-0.1,2.335-0.309c4.801-1.287,7.65-6.222,6.364-11.023l-2.217-8.274
 	C61.034,158.344,56.101,155.496,51.298,156.782z M297.52,281.322c-4.971,0-9,4.029-9,9v8.565c0,4.971,4.029,9,9,9s9-4.029,9-9
 	v-8.565C306.52,285.352,302.491,281.322,297.52,281.322z"
-						/>
-					</svg>
-				</div>
-				<Link className="CardBox__button" to={'/r/' + DEFAULT_ROOM}>
-					Create a room !
-				</Link>
-			</div>
-		</div>
-	);
+            />
+          </svg>
+        </div>
+        <Link className="CardBox__button" to={`/r/${DEFAULT_ROOM}`}>
+          Create a new room
+        </Link>
+        <div className="CardBox__separator">
+          <span>OR</span>
+        </div>
+        <input
+          className="CardBox__input"
+          type="text"
+          id="targetRoom"
+          name="targetRoom"
+          placeholder="A4C9"
+          onChange={(event) => setTargetRoom(event.target.value)}
+        />
+        <Link
+          className="CardBox__button"
+          to={targetRoom ? `/r/${targetRoom}` : "/"}
+        >
+          Join an existing room
+        </Link>
+      </div>
+    </div>
+  );
 };
 export default Home;

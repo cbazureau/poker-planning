@@ -1,4 +1,4 @@
-@import './CardBox.css';
+@import "./CardBox.css";
 
 .Home {
   position: relative;
@@ -14,12 +14,11 @@
   margin: 0;
   padding: 0;
   text-transform: uppercase;
-  font-style: normal;
+  font-weight: bold;
 }
 
 .Home__logo {
-  width: 150px;
+  width: 130px;
   fill: var(--gray);
   margin: 32px 0;
 }
-
