@@ -1,5 +1,4 @@
-@import './CardBox.css';
-
+@import "./CardBox.css";
 
 .RoomMessage {
   display: flex;
@@ -51,4 +50,43 @@
   padding: 4px 2px 0px;
   border-radius: 50%;
   font-weight: bold;
+}
+
+.RoomMessage__results {
+  color: white;
+  width: 100%;
+  margin-bottom: 16px;
+  font-size: 1.3rem;
+}
+
+.RoomMessage__resultsLine {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding: 4px;
+}
+.RoomMessage__resultsLine:first-child {
+  border-radius: 8px 8px 0 0;
+}
+.RoomMessage__resultsLine:last-child {
+  border-radius: 0 0 8px 8px;
+}
+.RoomMessage__resultsLineScore {
+  width: 30px;
+  text-align: right;
+  padding: 0 6px;
+  border-right: 1px solid var(--white);
+}
+.RoomMessage__resultsLineVoters {
+  text-align: left;
+  padding: 0 12px;
+}
+.RoomMessage__resultsLineVoter {
+  display: inline-flex;
+  margin-right: 6px;
+  padding: 0 4px;
+  font-size: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
 }
