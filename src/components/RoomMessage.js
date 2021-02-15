@@ -120,7 +120,6 @@ const RoomMessage = ({ roomData, currentSocketId, onReveal }) => {
               </button>
             )}
         </div>
-        }
       </div>
     );
   }

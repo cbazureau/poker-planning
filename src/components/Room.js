@@ -88,7 +88,7 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
           <div className="Room__id">{roomId}</div>
           <QRCode
             className="Room__QRCode"
-            size="512"
+            size={512}
             value={window.location.href}
           />
         </div>
@@ -115,27 +115,9 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
           />
         </div>
       )}
-      <div className="Room__info">
-        <span>
-          Room {roomId} ({socketStatus}) -{" "}
-        </span>
-        {isQrcodeVisible && (
-          <button
-            className="Room__infobutton"
-            onClick={() => setQrcodeVisible(false)}
-          >
-            hide QrCode
-          </button>
-        )}
-        {!isQrcodeVisible && (
-          <button
-            className="Room__infobutton"
-            onClick={() => setQrcodeVisible(true)}
-          >
-            view QrCode
-          </button>
-        )}
-      </div>
+      <button className="Room__info" onClick={() => setQrcodeVisible(true)}>
+        {roomId}
+      </button>
     </div>
   );
 };

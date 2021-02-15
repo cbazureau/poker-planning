@@ -7,18 +7,23 @@
 }
 .Room__info {
   position: fixed;
-  left: 0;
   right: 0;
-  bottom: 0;
-  font-size: 1.2rem;
-  color: var(--gray);
-  background: rgba(255, 255, 255, 0.5);
+  top: 0;
+  font-size: 7rem;
+  font-weight: bold;
+  color: var(--white);
+  opacity: 0.8;
+  background: transparent;
+  border: none;
+  display: inline;
   padding: 8px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   z-index: 2;
-  justify-content: space-between;
+}
+
+@media (max-width: 800px) {
+  .Room__info {
+    font-size: 4rem;
+  }
 }
 
 .Room__QRCodeBox {

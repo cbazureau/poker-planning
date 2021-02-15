@@ -67,10 +67,10 @@
   padding: 4px;
 }
 .RoomMessage__resultsLine:first-child {
-  border-radius: 8px 8px 0 0;
+  border-radius: 4px 4px 0 0;
 }
 .RoomMessage__resultsLine:last-child {
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 4px 4px;
 }
 .RoomMessage__resultsLineScore {
   width: 30px;
