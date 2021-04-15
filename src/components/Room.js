@@ -31,7 +31,12 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
       : window.location.host;
   const protocol =
     window.location.host.indexOf("localhost") > -1 ? "http" : "https";
-  const socket = useRef(io(`${protocol}://${socketDomain}`));
+  const socket = useRef(
+    io(`${protocol}://${socketDomain}`, {
+      path: "/one-socket/",
+      transports: ["websocket"],
+    })
+  );
 
   const onFormSubmit = ({ user, profile }) => {
     setCurrentUser(user);

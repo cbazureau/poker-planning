@@ -12,7 +12,7 @@ const rooms = {};
 const app = express();
 const port = process.env.PORT || 5000;
 const server = http.createServer(app).listen(port);
-const io = sio(server, { origins: '*:*' });
+const io = sio(server, { origins: '*:*', path: "/one-socket/" });
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(path.join(__dirname, '../../build')));
