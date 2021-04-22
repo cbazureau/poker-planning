@@ -16,6 +16,18 @@ const STATUS = {
   IN_ROOM: "IN_ROOM",
 };
 
+const SOCKET_DOMAIN =
+  window.location.host === "localhost:3000"
+    ? "localhost:5000"
+    : window.location.host;
+const SOCKET_PROTOCOL =
+  window.location.host.indexOf("localhost") > -1 ? "http" : "https";
+
+const SOCKET = io(`${SOCKET_PROTOCOL}://${SOCKET_DOMAIN}`, {
+  path: "/one-socket/",
+  transports: ["websocket"],
+});
+
 /**
  * Room
  * Create or access to a room
@@ -25,18 +37,8 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
   const [isQrcodeVisible, setQrcodeVisible] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentProfile, setCurrentProfile] = useState(undefined);
-  const socketDomain =
-    window.location.host === "localhost:3000"
-      ? "localhost:5000"
-      : window.location.host;
-  const protocol =
-    window.location.host.indexOf("localhost") > -1 ? "http" : "https";
-  const socket = useRef(
-    io(`${protocol}://${socketDomain}`, {
-      path: "/one-socket/",
-      transports: ["websocket"],
-    })
-  );
+
+  const socket = useRef(SOCKET);
 
   const onFormSubmit = ({ user, profile }) => {
     setCurrentUser(user);
