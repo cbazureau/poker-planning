@@ -11,7 +11,7 @@ const rooms = {};
 
 const app = express();
 app.use("/one-socket/", (req, res) =>
-  setTimeout(() => res.status(500).send("ko"), 30000)
+  setTimeout(() => res.status(500).send("ko"), 20000)
 );
 const port = process.env.PORT || 5000;
 const server = http.createServer(app).listen(port);
