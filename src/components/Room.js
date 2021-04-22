@@ -24,7 +24,7 @@ const SOCKET_PROTOCOL =
   window.location.host.indexOf("localhost") > -1 ? "http" : "https";
 
 const SOCKET = io(`${SOCKET_PROTOCOL}://${SOCKET_DOMAIN}`, {
-  path: "/one-socket/",
+  path: "/one-grooming-socket/",
   transports: ["websocket"],
 });
 

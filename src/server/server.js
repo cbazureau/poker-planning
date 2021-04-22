@@ -10,9 +10,12 @@ const _remove = require("lodash/remove");
 const rooms = {};
 
 const app = express();
+app.use("/one-socket/", (req, res) =>
+  setTimeout(() => res.status(500).send("ko"), 30000)
+);
 const port = process.env.PORT || 5000;
 const server = http.createServer(app).listen(port);
-const io = sio(server, { origins: "*:*", path: "/one-socket/" });
+const io = sio(server, { origins: "*:*", path: "/one-grooming-socket/" });
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../../build")));
