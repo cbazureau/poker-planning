@@ -10,7 +10,7 @@ const _remove = require("lodash/remove");
 const rooms = {};
 
 const app = express();
-app.use("/one-socket/", (req, res) => res.status(101).send("ko"));
+app.get("/one-socket/", (req, res) => res.status(404).send("ko"));
 const port = process.env.PORT || 5000;
 const server = http.createServer(app).listen(port);
 const io = sio(server, { origins: "*:*", path: "/one-grooming-socket/" });
