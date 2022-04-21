@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./Home.css";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Home.css';
 
 const genRanHex = (size) =>
   [...Array(size)]
     .map(() => Math.floor(Math.random() * 16).toString(16))
-    .join("")
+    .join('')
     .toUpperCase();
 
 const DEFAULT_ROOM = genRanHex(4);
 
 const Home = () => {
-  const [targetRoom, setTargetRoom] = useState("");
+  const [targetRoom, setTargetRoom] = useState('');
   return (
     <div className="Home">
       <div className="CardBox">
@@ -72,7 +72,7 @@ const Home = () => {
         />
         <Link
           className="CardBox__button"
-          to={targetRoom ? `/r/${targetRoom}` : "/"}
+          to={targetRoom ? `/r/${targetRoom}` : '/'}
         >
           Join an existing room
         </Link>

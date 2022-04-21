@@ -90,3 +90,8 @@
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 4px;
 }
+
+.RoomMessage__voteId {
+  font-weight: bold;
+  font-size: 1.8rem;
+}

@@ -1,15 +1,16 @@
-import React, { Fragment } from "react";
-import _get from "lodash/get";
-import "./RoomMessage.css";
-import VOTES from "../utils/votes";
-import PROFILES from "../utils/profiles";
-import CARDS from "../utils/cards";
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import _get from 'lodash/get';
+import './RoomMessage.css';
+import VOTES from '../utils/votes';
+import PROFILES from '../utils/profiles';
+import CARDS from '../utils/cards';
 
 const Votes = ({ votes, withStoryPoint }) => (
   <Fragment>
     <div className="RoomMessage__votes has-voted">
       <div className="RoomMessage__voteTitle">
-        {withStoryPoint ? "Have voted" : "Have already voted"}
+        {withStoryPoint ? 'Have voted' : 'Have already voted'}
       </div>
       {votes
         .filter((vote) => vote.storyPoint)
@@ -24,7 +25,7 @@ const Votes = ({ votes, withStoryPoint }) => (
     </div>
     <div className="RoomMessage__votes">
       <div className="RoomMessage__voteTitle">
-        {withStoryPoint ? "Didn't vote" : "Still needs to vote"}
+        {withStoryPoint ? "Didn't vote" : 'Still needs to vote'}
       </div>
       {votes
         .filter((vote) => !vote.storyPoint)
@@ -40,16 +41,16 @@ const Votes = ({ votes, withStoryPoint }) => (
 const Results = ({ votes }) => (
   <Fragment>
     <div className="RoomMessage__results">
-      {CARDS.map((card) => (
+      {CARDS.map(({ color: backgroundColor, score }) => (
         <div
           className="RoomMessage__resultsLine"
-          style={{ backgroundColor: card.color }}
-          key={card.score}
+          style={{ backgroundColor }}
+          key={score}
         >
-          <div className="RoomMessage__resultsLineScore">{card.score}</div>
+          <div className="RoomMessage__resultsLineScore">{score}</div>
           <div className="RoomMessage__resultsLineVoters">
             {votes
-              .filter((vote) => vote.storyPoint === card.score)
+              .filter(({ storyPoint }) => storyPoint === score)
               .map(({ user }) => (
                 <div className="RoomMessage__resultsLineVoter" key={user}>
                   {user}
@@ -62,7 +63,7 @@ const Results = ({ votes }) => (
     <div className="RoomMessage__votes">
       <div className="RoomMessage__voteTitle">Didn't vote</div>
       {votes
-        .filter((vote) => !vote.storyPoint)
+        .filter(({ storyPoint }) => !storyPoint)
         .map(({ user }) => (
           <span key={user} className="RoomMessage__user">
             {user}
@@ -73,19 +74,22 @@ const Results = ({ votes }) => (
 );
 
 const RoomMessage = ({ roomData, currentSocketId, onReveal }) => {
-  const currentVote = _get(roomData, "currentVote", {});
+  const currentVote = _get(roomData, 'currentVote', {});
   const currentVoteStatus = currentVote.status || VOTES.NOT_STARTED;
-  const user = _get(roomData, "users", []).find(
+  const user = _get(roomData, 'users', []).find(
     (user) => user.id === currentSocketId
   );
-  const votes = _get(roomData, "users", [])
+
+  const { id: voteId, link } = currentVote || {};
+
+  const votes = _get(roomData, 'users', [])
     .filter(
       (user) =>
         user.profile === PROFILES.VOTER || user.profile === PROFILES.BOTH
     )
     .map((user) => {
       const voter =
-        _get(roomData, "currentVote.voters", []).find(
+        _get(roomData, 'currentVote.voters', []).find(
           (voter) => user.id === voter.id
         ) || {};
       return {
@@ -106,7 +110,21 @@ const RoomMessage = ({ roomData, currentSocketId, onReveal }) => {
     return (
       <div className="RoomMessage">
         <div className="CardBox">
-          <div className="CardBox__intro">Voting for {currentVote.id} ...</div>
+          <div className="CardBox__intro">
+            Voting for{' '}
+            {link ? (
+              <Link
+                to={{ pathname: link }}
+                target="_blank"
+                className="RoomMessage__voteId"
+              >
+                {voteId}
+              </Link>
+            ) : (
+              <span className="RoomMessage__voteId">{voteId}</span>
+            )}{' '}
+            ...
+          </div>
           <Votes votes={votes} />
           {!!user &&
             (user.profile === PROFILES.SUBMITTER ||
@@ -127,7 +145,19 @@ const RoomMessage = ({ roomData, currentSocketId, onReveal }) => {
     <div className="RoomMessage">
       <div className="CardBox">
         <div className="CardBox__intro">
-          Results for {currentVote.id} (Waiting for a new vote)
+          Results for{' '}
+          {link ? (
+            <Link
+              to={{ pathname: link }}
+              target="_blank"
+              className="RoomMessage__voteId"
+            >
+              {voteId}
+            </Link>
+          ) : (
+            <span className="RoomMessage__voteId">{voteId}</span>
+          )}{' '}
+          (Waiting for a new vote)
         </div>
         <Results votes={votes} />
       </div>

@@ -1,14 +1,14 @@
-import React from "react";
-import classnames from "classnames";
-import "./VoteButton.css";
+import React from 'react';
+import classnames from 'classnames';
+import './VoteButton.css';
 
 /**
  * VoteButton
  */
 const VoteButton = ({ card, activeStoryPoint, onVote }) => (
   <button
-    className={classnames("VoteButton", {
-      "is-active": card.score === activeStoryPoint,
+    className={classnames('VoteButton', {
+      'is-active': card.score === activeStoryPoint,
     })}
     type="button"
     onClick={() => onVote({ storyPoint: card.score })}

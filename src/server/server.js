@@ -94,11 +94,12 @@ io.sockets.on("connection", (socket) => {
   });
 
   // Propose Vote
-  socket.on("propose-vote", ({ voteId }) => {
+  socket.on("propose-vote", ({ voteId, link }) => {
     // console.log('[server] propose-vote', socket.id);
     rooms[currentRoomId].currentVote = {
       id: voteId,
       userId: socket.id,
+      link,
       status: "PENDING",
       voters: [],
     };
