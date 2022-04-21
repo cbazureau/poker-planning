@@ -1,31 +1,31 @@
-import React, { useEffect, useRef, useState } from "react";
-import { connect } from "react-redux";
-import QRCode from "qrcode.react";
-import store from "../store";
-import io from "socket.io-client";
-import useBeforeUnload from "../utils/useBeforeUnload";
-import "./Room.css";
-import RoomLobby from "./RoomLobby";
-import RoomSubmitter from "./RoomSubmitter";
-import RoomMessage from "./RoomMessage";
-import RoomVoter from "./RoomVoter";
+import React, { useEffect, useRef, useState } from 'react';
+import { connect } from 'react-redux';
+import QRCode from 'qrcode.react';
+import store from '../store';
+import io from 'socket.io-client';
+import useBeforeUnload from '../utils/useBeforeUnload';
+import './Room.css';
+import RoomLobby from './RoomLobby';
+import RoomSubmitter from './RoomSubmitter';
+import RoomMessage from './RoomMessage';
+import RoomVoter from './RoomVoter';
 
 const STATUS = {
-  DISCONNECTED: "DISCONNECTED",
-  IN_LOBBY: "IN_LOBBY",
-  IN_ROOM: "IN_ROOM",
+  DISCONNECTED: 'DISCONNECTED',
+  IN_LOBBY: 'IN_LOBBY',
+  IN_ROOM: 'IN_ROOM',
 };
 
 const SOCKET_DOMAIN =
-  window.location.host === "localhost:3000"
-    ? "localhost:5000"
+  window.location.host === 'localhost:3000'
+    ? 'localhost:5000'
     : window.location.host;
 const SOCKET_PROTOCOL =
-  window.location.host.indexOf("localhost") > -1 ? "http" : "https";
+  window.location.host.indexOf('localhost') > -1 ? 'http' : 'https';
 
 const SOCKET = io(`${SOCKET_PROTOCOL}://${SOCKET_DOMAIN}`, {
-  path: "/one-grooming-socket/",
-  transports: ["websocket"],
+  path: '/one-grooming-socket/',
+  transports: ['websocket'],
 });
 
 /**
@@ -46,21 +46,21 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
   };
 
   const onVote = ({ storyPoint }) => {
-    socket.current.emit("vote", { storyPoint });
+    socket.current.emit('vote', { storyPoint });
   };
 
-  const onProposeVote = ({ voteId }) => {
-    socket.current.emit("propose-vote", { voteId });
+  const onProposeVote = ({ voteId, link }) => {
+    socket.current.emit('propose-vote', { voteId, link });
   };
 
   const onReveal = () => {
-    socket.current.emit("reveal-vote");
+    socket.current.emit('reveal-vote');
   };
 
-  socket.current.on("connect", () => {
+  socket.current.on('connect', () => {
     setSocketStatus(STATUS.IN_LOBBY);
   });
-  socket.current.on("update", ({ you, data }) => {
+  socket.current.on('update', ({ you, data }) => {
     // console.log('[update]', you, data);
     updateRoom({ you, data });
     if (socketStatus === STATUS.IN_LOBBY) {
@@ -71,13 +71,13 @@ const Room = ({ updateRoom, match, roomData, currentSocketId }) => {
 
   useBeforeUnload(() => {
     if (socketStatus === STATUS.IN_ROOM) {
-      socket.current.emit("leave");
+      socket.current.emit('leave');
     }
   });
 
   useEffect(() => {
     if (socketStatus === STATUS.IN_LOBBY && !!currentProfile && !!currentUser) {
-      socket.current.emit("find", {
+      socket.current.emit('find', {
         roomId,
         user: currentUser,
         profile: currentProfile,
@@ -136,7 +136,7 @@ const mapStateToProps = ({ room: { data, you } }) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   updateRoom: ({ you, data }) =>
-    store.dispatch({ type: "UPDATE_ROOM", payload: { you, data } }),
+    store.dispatch({ type: 'UPDATE_ROOM', payload: { you, data } }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Room);

@@ -1,16 +1,16 @@
-import React from "react";
-import _get from "lodash/get";
-import VoteButton from "./VoteButton";
-import "./RoomVoter.css";
-import PROFILES from "../utils/profiles";
-import VOTES from "../utils/votes";
-import CARDS from "../utils/cards";
+import React from 'react';
+import _get from 'lodash/get';
+import VoteButton from './VoteButton';
+import './RoomVoter.css';
+import PROFILES from '../utils/profiles';
+import VOTES from '../utils/votes';
+import CARDS from '../utils/cards';
 
 /**
  * RoomVoter
  */
 const RoomVoter = ({ roomData, currentSocketId, onVote }) => {
-  const user = _get(roomData, "users", []).find(
+  const user = _get(roomData, 'users', []).find(
     (user) => user.id === currentSocketId
   );
   if (
@@ -18,12 +18,12 @@ const RoomVoter = ({ roomData, currentSocketId, onVote }) => {
     (user.profile !== PROFILES.VOTER && user.profile !== PROFILES.BOTH)
   )
     return null;
-  const currentVote = _get(roomData, "currentVote");
+  const currentVote = _get(roomData, 'currentVote');
   // Currently not voting or is already revealed
   if (!currentVote || currentVote.status !== VOTES.PENDING) return null;
 
   const activeStoryPoint = (
-    _get(currentVote, "voters", []).find(
+    _get(currentVote, 'voters', []).find(
       (user) => user.id === currentSocketId
     ) || {}
   ).vote;
